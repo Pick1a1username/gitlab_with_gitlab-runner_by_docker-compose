@@ -144,8 +144,8 @@ Consider to use docker:dind directly as a image. If you want to use docker:dind 
 
 ## References
 
-https://docs.gitlab.com/omnibus/docker/
-https://docs.gitlab.com/runner/configuration/advanced-configuration.html
+* https://docs.gitlab.com/omnibus/docker/
+* https://docs.gitlab.com/runner/configuration/advanced-configuration.html
 
 
 ## Contributing
