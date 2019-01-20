@@ -1,0 +1,30 @@
+version: '3.3'
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce:11.6.2-ce.0'
+    restart: always
+    hostname: 'localhost'
+    restart: always
+    ports:
+      - "8929:80"
+      - "2289:22"
+    volumes:
+    # mkdir -p ./gitlab/etc/gitlab ./gitlab/var/log/gitlab ./gitlab/var/opt/gitlab
+      - "./gitlab/etc/gitlab:/etc/gitlab"
+      - "./gitlab/var/log/gitlab:/var/log/gitlab"
+      - "./gitlab/var/opt/gitlab:/var/opt/gitlab"
+
+  gitlab-runner:
+    image: gitlab/gitlab-runner:latest
+    volumes:
+      # mkdir -p gitlab-runner/etc/gitlab-runner
+      - "./gitlab-runner/etc/gitlab-runner:/etc/gitlab-runner"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+
+# Set default network so that containers can resolve each other's hostname.
+networks:
+  default:
+    external:
+      name: gitlab
